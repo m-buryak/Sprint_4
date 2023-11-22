@@ -46,9 +46,8 @@ public class AccordionTest {
         this.driver = new ChromeDriver();
         MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
-        List<WebElement> accordionItems = mainPage.getAccordionItems();
-        String s = mainPage.clickOnAccordionItem(accordionHeaderText).split("\n")[1];
-        assertEquals(result, s.equals(accordionText));
+        String textFromAccordionItem = mainPage.clickOnAccordionItem(accordionHeaderText).split("\n")[1];
+        assertEquals(result, textFromAccordionItem.equals(accordionText));
     }
 
     @After

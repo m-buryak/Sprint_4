@@ -6,14 +6,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RentPage {
-    private WebDriver driver;
-    private By datePicker = By.cssSelector("div.react-datepicker__input-container input");
-    private By rentalPeriod = By.cssSelector("div.Dropdown-placeholder");
-    private By blackColor = By.xpath(".//label[@class='Checkbox_Label__3wxSf'][1]/input");
-    private By comment = By.xpath(".//input[@placeholder='Комментарий для курьера']");
-    private By orderButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
-    private By approvalButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Да']");
-    private By completeOrder = By.xpath(".//div[@class='Order_Modal__YZ-d3']/div[text()='Заказ оформлен']");
+    private final WebDriver driver;
+    private final By datePicker = By.cssSelector("div.react-datepicker__input-container input");
+    private final By rentalPeriod = By.cssSelector("div.Dropdown-placeholder");
+    private final By blackColor = By.xpath(".//label[@class='Checkbox_Label__3wxSf'][1]/input");
+    private final By comment = By.xpath(".//input[@placeholder='Комментарий для курьера']");
+    private final By orderButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Заказать']");
+    private final By approvalButton = By.xpath(".//div[@class='Order_Buttons__1xGrp']/button[text()='Да']");
+    private final By completeOrder = By.xpath(".//div[@class='Order_Modal__YZ-d3']/div[text()='Заказ оформлен']");
 
     public RentPage(WebDriver driver) {
         this.driver  = driver;

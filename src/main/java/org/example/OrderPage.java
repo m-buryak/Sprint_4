@@ -5,13 +5,13 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class OrderPage {
-    private WebDriver driver;
-    private By name = By.xpath(".//input[@placeholder='* Имя']");
-    private By surname = By.xpath(".//input[@placeholder='* Фамилия']");
-    private By address = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
-    private By metro = By.xpath(".//input[@placeholder='* Станция метро']");
-    private By telephone = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
-    private By nextButton = By.cssSelector("div.Order_NextButton__1_rCA .Button_Button__ra12g");
+    private final WebDriver driver;
+    private final By name = By.xpath(".//input[@placeholder='* Имя']");
+    private final By surname = By.xpath(".//input[@placeholder='* Фамилия']");
+    private final By address = By.xpath(".//input[@placeholder='* Адрес: куда привезти заказ']");
+    private final By metro = By.xpath(".//input[@placeholder='* Станция метро']");
+    private final By telephone = By.xpath(".//input[@placeholder='* Телефон: на него позвонит курьер']");
+    private final By nextButton = By.cssSelector("div.Order_NextButton__1_rCA .Button_Button__ra12g");
 
     public OrderPage(WebDriver driver) {
         this.driver = driver;

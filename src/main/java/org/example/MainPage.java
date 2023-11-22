@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 
 public class MainPage {
-    private WebDriver driver;
-    private String url = "https://qa-scooter.praktikum-services.ru/";
-    private By orderTopButton = By.cssSelector("div.Header_Nav__AGCXC button.Button_Button__ra12g");
-    private By orderStatus = By.cssSelector("div.Header_Nav__AGCXC button.Header_Link__1TAG7");
-    private By orderBottomButton = By.cssSelector("div.Home_FinishButton__1_cWm button.Button_Button__ra12g");
-    private By accordions = By.xpath(".//div[@class='accordion__item']");
+    private final WebDriver driver;
+    private final String url = "https://qa-scooter.praktikum-services.ru/";
+    private final By orderTopButton = By.cssSelector("div.Header_Nav__AGCXC button.Button_Button__ra12g");
+    private final By orderStatus = By.cssSelector("div.Header_Nav__AGCXC button.Header_Link__1TAG7");
+    private final By orderBottomButton = By.cssSelector("div.Home_FinishButton__1_cWm button.Button_Button__ra12g");
+    private final By accordions = By.xpath(".//div[@class='accordion__item']");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;

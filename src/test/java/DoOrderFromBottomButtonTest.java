@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(Parameterized.class)
 public class DoOrderFromBottomButtonTest {
@@ -56,7 +57,7 @@ public class DoOrderFromBottomButtonTest {
         rentPage.chooseBlackColor();
         rentPage.doOrder();
         boolean result = rentPage.isDisplayedModalProcessedWindow();
-        assertEquals(true, result);
+        assertTrue(result);
     }
 
     @After
