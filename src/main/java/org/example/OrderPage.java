@@ -40,6 +40,15 @@ public class OrderPage {
         driver.findElement(nextButton).click();
     }
 
+    public void doOrder(String name, String surname, String metro, String address, String telephone) {
+        this.setNameValue(name);
+        this.setSurnameValue(surname);
+        this.setMetroValue(metro);
+        this.setAddressValue(address);
+        this.setTelephoneValue(telephone);
+        this.clickOnNextButton();
+    }
+
 
 
 }

@@ -1,20 +1,20 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.MainPage;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.List;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class AccordionTest {
     private WebDriver driver;
+
+    private MainPage mainPage;
     private final String accordionHeaderText;
     private final String accordionText;
     private final boolean result;
@@ -25,8 +25,29 @@ public class AccordionTest {
         this.result = result;
     }
 
+    @Before
+    public void setup() {
+        switch (String.valueOf(System.getProperty("browser"))) {
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                this.driver = new FirefoxDriver();
+                this.mainPage = new MainPage(driver);
+                break;
+            case "chrome":
+            default:
+//                WebDriverManager.chromedriver().setup();
+//                this.driver = new ChromeDriver();
+                WebDriverManager.firefoxdriver().setup();
+                this.driver = new FirefoxDriver();
+                this.mainPage = new MainPage(driver);
+        }
+//        WebDriverManager.chromedriver().setup();
+//        this.driver = new ChromeDriver();
+//        this.mainPage = new MainPage(driver);
+    }
+
     @Parameterized.Parameters
-    public static Object[][] getCredentials() {
+    public static Object[][] getTestData() {
         return new Object[][] {
                 {"Сколько это стоит? И как оплатить?", "Сутки — 400 рублей. Оплата курьеру — наличными или картой.", true},
                 {"Хочу сразу несколько самокатов! Так можно?", "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.", true},
@@ -41,10 +62,6 @@ public class AccordionTest {
 
     @Test
     public void accordionTest() {
-        WebDriverManager.chromedriver().setup();
-        System.setProperty("webdriver.chrome.driver", "C:\\WebDriver\\bin\\chromedriver.exe");
-        this.driver = new ChromeDriver();
-        MainPage mainPage = new MainPage(driver);
         mainPage.openMainPage();
         String textFromAccordionItem = mainPage.clickOnAccordionItem(accordionHeaderText).split("\n")[1];
         assertEquals(result, textFromAccordionItem.equals(accordionText));
