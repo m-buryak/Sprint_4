@@ -1,20 +1,18 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.example.MainPage;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.example.OrderPage;
+import org.example.RentPage;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class AccordionTest {
-    private WebDriver driver;
-
-    private MainPage mainPage;
     private final String accordionHeaderText;
     private final String accordionText;
     private final boolean result;
@@ -25,25 +23,23 @@ public class AccordionTest {
         this.result = result;
     }
 
-    @Before
-    public void setup() {
+    private static WebDriver driver;
+    private static MainPage mainPage;
+
+    @BeforeClass
+    public static void setup() {
         switch (String.valueOf(System.getProperty("browser"))) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
-                this.driver = new FirefoxDriver();
-                this.mainPage = new MainPage(driver);
+                driver = new FirefoxDriver();
+                mainPage = new MainPage(driver);
                 break;
             case "chrome":
             default:
-//                WebDriverManager.chromedriver().setup();
-//                this.driver = new ChromeDriver();
-                WebDriverManager.firefoxdriver().setup();
-                this.driver = new FirefoxDriver();
-                this.mainPage = new MainPage(driver);
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                mainPage = new MainPage(driver);
         }
-//        WebDriverManager.chromedriver().setup();
-//        this.driver = new ChromeDriver();
-//        this.mainPage = new MainPage(driver);
     }
 
     @Parameterized.Parameters
@@ -67,8 +63,8 @@ public class AccordionTest {
         assertEquals(result, textFromAccordionItem.equals(accordionText));
     }
 
-    @After
-    public void tearDown() {
+    @AfterClass
+    public static void tearDown() {
         driver.quit();
     }
 }
